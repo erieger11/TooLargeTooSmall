@@ -15,19 +15,20 @@ public class Main {
         while (true) {
             if (toPlay().equals("no")) {
                 endTheGame();
+                break;
             }
             mysteryNumber = chosenMysteryNumber();
-            guessRemaining = 19;
+            guessRemaining = 20;
             System.out.println("The Mystery Number is between 1 and 10,000! You have 20 guesses! Good luck :)");
             while (guessRemaining > noMoreGuesses) {
                 yourNumberGuess();
                 checkingAgainstTheMysteryNumber();
-                didYouWin();
+                didYouLose();
                 if (!isPlaying) break;
             }
         }
     }
-
+//THE NUMBER
     public static int chosenMysteryNumber() {
         int max = 10000, min = 1;
         return min + (int) (Math.random() * (max - min + 1));
@@ -36,15 +37,17 @@ public class Main {
 
     public static void checkingAgainstTheMysteryNumber() {
         if (yourGuess == mysteryNumber) {
-            didYouWin();
+            System.out.println("You guessed the Number!!! WINNER");
         } else if (yourGuess > mysteryNumber){
             System.out.println("The number is lower!");
-        System.out.println("You have " + guessRemaining-- + " remaining");
+        System.out.println("You have " + guessRemaining + " remaining");
     } else{
         System.out.println("The number is higher!");
-        System.out.println("You have " + guessRemaining-- + " remaining");
+        System.out.println("You have " + guessRemaining + " remaining");
     }
 }
+//THE NUMBER
+
 
 //SCANNERS
     public static String toPlay() {
@@ -58,14 +61,13 @@ public class Main {
         System.out.println("Enter your number guess : ");
         yourGuess = scan.nextInt();
         System.out.println("You typed : " + yourGuess);
+        guessRemaining--;
     }
 //SCANNERS
 
 //END GAME RESULTS
-    public static void didYouWin() {
-        if (yourGuess == mysteryNumber){
-            System.out.println("You won!");
-        } else if(guessRemaining == 0){
+    public static void didYouLose() {
+        if (guessRemaining == 0){
             System.out.println("You're our of guesses... LOSER!!!");
         }
     }
