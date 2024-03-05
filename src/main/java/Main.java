@@ -1,5 +1,3 @@
-import java.util.Objects;
-import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -10,7 +8,6 @@ public class Main {
     static int guessRemaining = 25;
     static int noMoreGuesses = 0;
     static int yourGuess;
-    static int userGuessedNumber = 0;
     static boolean isPlaying = true;
 
 
@@ -20,8 +17,8 @@ public class Main {
                 endTheGame();
             }
             mysteryNumber = chosenMysteryNumber();
-            guessRemaining = 25;
-            System.out.println("The Mystery Number is between 1 and 10,000! Good luck :)");
+            guessRemaining = 19;
+            System.out.println("The Mystery Number is between 1 and 10,000! You have 20 guesses! Good luck :)");
             while (guessRemaining > noMoreGuesses) {
                 yourNumberGuess();
                 checkingAgainstTheMysteryNumber();
@@ -49,10 +46,6 @@ public class Main {
     }
 }
 
-
-
-
-
 //SCANNERS
     public static String toPlay() {
         Scanner scan = new Scanner(System.in);
@@ -60,18 +53,17 @@ public class Main {
         //todo handle any input thats not yes or no
         return scan.next().toLowerCase();
     }
-    public static int yourNumberGuess() {
+    public static void yourNumberGuess() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Enter any number : ");
+        System.out.println("Enter your number guess : ");
         yourGuess = scan.nextInt();
         System.out.println("You typed : " + yourGuess);
-        return yourGuess;
     }
 //SCANNERS
 
 //END GAME RESULTS
     public static void didYouWin() {
-        if (userGuessedNumber == mysteryNumber){
+        if (yourGuess == mysteryNumber){
             System.out.println("You won!");
         } else if(guessRemaining == 0){
             System.out.println("You're our of guesses... LOSER!!!");
